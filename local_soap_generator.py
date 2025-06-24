@@ -12,11 +12,18 @@ Objective:
 Assessment:
 Plan:
 """
-    result = subprocess.run(
-        ["C:/Users/LPTP13/AppData/Local/Programs/Ollama/ollama.exe", "run", model_name],
-        input=prompt.encode(),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
+    try:
+        result = subprocess.run(
+            ["C:/Users/LPTP13/AppData/Local/Programs/Ollama/ollama.exe", "run", model_name],
+            input=prompt.encode(),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=60  # Prevent hanging
+        )
 
-    return result.stdout.decode("utf-8").strip()
+        if result.returncode != 0:
+            raise RuntimeError(f"Ollama error: {result.stderr.decode('utf-8')}")
+
+        return result.stdout.decode("utf-8").strip()
+    except Exception as e:
+        raise RuntimeError(f"Ollama invocation failed: {e}")
