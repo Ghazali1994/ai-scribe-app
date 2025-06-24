@@ -13,7 +13,7 @@ Assessment:
 Plan:
 """
     result = subprocess.run(
-        ["ollama", "run", model_name],
+        ["C:\Users\LPTP13\AppData\Local\Programs\Ollama\ollama.exe", "run", model_name],
         input=prompt.encode(),
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
