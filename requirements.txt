@@ -1,6 +1,6 @@
 streamlit>=1.32
 faster-whisper>=0.10
 pydub>=0.25
-streamlit-audiorecorder>=0.1
+streamlit-audiorecorder<=0.0.6
 torch>=2.0  # Required by whisper
 ffmpeg-python>=0.2.0  # Needed if pydub uses ffmpeg
